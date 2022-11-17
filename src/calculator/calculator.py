@@ -17,8 +17,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # Setup numbers.
-        for n in range(0, 10):
-            getattr(self, 'pushButton_n%s' % n).pressed.connect(lambda v=n: self.input_number(v))
+        for n in range(10):
+            getattr(self, f'pushButton_n{n}').pressed.connect(
+                lambda v=n: self.input_number(v)
+            )
+
 
         # Setup operations.
         self.pushButton_add.pressed.connect(lambda: self.operation(operator.add))
@@ -74,10 +77,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.current_op:  # 完成当前操作(+,-*,/,)
             self.equals()
 
-        if op == operator.add or op == operator.sub:
+        if op in [operator.add, operator.sub]:
             self.stack.append(0)
-        elif op == operator.mul or op == operator.truediv:
-            self.stack.append(1)    
+        elif op in [operator.mul, operator.truediv]:
+            self.stack.append(1)
         self.state = INPUT
         self.current_op = op
 

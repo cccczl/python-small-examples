@@ -14,14 +14,12 @@ def timing_func(fn):
 
 @timing_func
 def test_list_append():
-    lst = []
-    for i in range(0, int(1e6)):
-        lst.append(i)
+    lst = list(range(int(1e6)))
 
 
 @timing_func
 def test_list_compre():
-    [i for i in range(0, int(1e6))]  # 列表生成式
+    list(range(int(1e6)))
 
 
 a = test_list_append()

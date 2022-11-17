@@ -9,7 +9,7 @@ ca + cb  # Counter({'orange': 3, 'computer': 2, 'apple': 1})
 
 # 进一步抽象
 def sumc(*c):
-    if (len(c) < 1):
+    if not c:
         return
     mapc = map(Counter, c)
     s = Counter([])

@@ -39,7 +39,7 @@ print(d)
 
 with open('rcluster1.txt', 'w') as f:
     for k, v in d.items():
-        f.write(str(k) + ' ' + str(len(v)) + '\n')
+        f.write(f'{str(k)} {len(v)}' + '\n')
         for i in v:
             f.write(i + '\n')
 

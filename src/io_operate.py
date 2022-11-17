@@ -10,9 +10,8 @@ def mkdir(path):
 
 
 def openfile(filename):
-    f = open(filename)
-    fllist = f.read()
-    f.close()
+    with open(filename) as f:
+        fllist = f.read()
     return fllist  # 返回读取内容
 
 

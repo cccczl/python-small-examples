@@ -28,13 +28,12 @@ with open('./data/wechat_pic.html',mode='r',errors='ignore') as f:
         if url in downloaded:
             continue
         print(f'{url}')
-        q=urlopen(url+'.jpg')
+        q = urlopen(f'{url}.jpg')
         pic=q.read()
-        
-        save = open('./data/wechat_pic/%d.jpg'%(i,),mode='w+b')
-        save.write(pic)
-        q.close()
-        save.close()
+
+        with open('./data/wechat_pic/%d.jpg'%(i,),mode='w+b') as save:
+            save.write(pic)
+            q.close()
         print(f'pic{i} saved!')
         downloaded.append(url)
       

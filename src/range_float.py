@@ -8,7 +8,7 @@ def rang(start,stop,n):
     g = 0
     while g!=n:
         start=start+step
-        n=n-1
+        n -= 1
         lst.append(round((start),2))
     return lst
 

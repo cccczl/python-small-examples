@@ -5,7 +5,7 @@ import time
 
 def batch_zip(start_dir):
     start_dir = start_dir  # 要压缩的文件夹路径
-    file_news = start_dir + '.zip'  # 压缩后文件夹的名字
+    file_news = f'{start_dir}.zip'
 
     z = zipfile.ZipFile(file_news, 'w', zipfile.ZIP_DEFLATED)
     for dir_path, dir_names, file_names in os.walk(start_dir):

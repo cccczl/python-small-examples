@@ -13,9 +13,8 @@ def coin_exchange(coins, target):
     for i in range(1, target+1):
         h = target
         for coin in coins:
-            if coin <= i and dp[i - coin] != -1:
-                if dp[i - coin] <= h:
-                    h = dp[i - coin]
+            if coin <= i and dp[i - coin] != -1 and dp[i - coin] <= h:
+                h = dp[i - coin]
         dp[i] = h + 1 if h < i + 1 else - 1
     return dp[target]
 

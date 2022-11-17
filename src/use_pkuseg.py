@@ -16,6 +16,6 @@ print(top10)
 frequency_sort = Counter(words).most_common()
 with open('./data/cut_words.csv', 'w') as f:
     for line in frequency_sort:
-        f.write(str(line[0])+',' + str(line[1])+"\n")
+        f.write(f'{str(line[0])},{str(line[1])}' + "\n")
 
 print('writing done')

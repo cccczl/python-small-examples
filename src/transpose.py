@@ -2,7 +2,7 @@ from collections.abc import Iterable
 
 
 def transpose(lst):
-    if len(lst) > 0 and isinstance(lst[0], Iterable) is False:
+    if len(lst) > 0 and not isinstance(lst[0], Iterable):
         return lst
     return list(map(lambda x: list(x), zip(*lst)))
 

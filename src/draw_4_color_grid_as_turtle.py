@@ -56,10 +56,7 @@ class MyTurtle(turtle.Turtle):
     '''
 
     def get_color(self):
-        rgb = []
-        for i in range(3):
-            rgb.append(random.randint(0, 255))
-        return rgb
+        return [random.randint(0, 255) for _ in range(3)]
 
     def set_pen_color(self):
         '''
@@ -80,7 +77,7 @@ class MyTurtle(turtle.Turtle):
 
     def draw_shape(self, sides: int, length: int) -> None:
         _angle = 360.0/sides
-        for side in range(sides):
+        for _ in range(sides):
             self.forward(length)
             self.left(_angle)
 
@@ -110,8 +107,7 @@ def diff_color_square_address(star: list, end: int, step: int) -> list:
     y = list(range(star[1], end+1, step))
     res_array = []
     for xi in x:
-        for yi in y:
-            res_array.append([xi, yi])
+        res_array.extend([xi, yi] for yi in y)
     return res_array
 
 
@@ -136,10 +132,10 @@ def draw_main(b_val: int, s_len: int) -> None:
 
     tem_b = b_val + 1
     tem_s = b_val - tem_b % 2  # 取单数数量
-    sx = list(x1 for x1 in range(1, tem_s))  # 小方格基本坐标
-    sy = list(y1 for y1 in range(1, tem_s))
-    bx = list(x1 for x1 in range(1, tem_b))  # 大方格基本坐标
-    by = list(y1 for y1 in range(1, tem_b))
+    sx = list(range(1, tem_s))
+    sy = list(range(1, tem_s))
+    bx = list(range(1, tem_b))
+    by = list(range(1, tem_b))
 
     b_len = len(sx)  # 大方格边长
     different_colors_square_list = [
@@ -180,10 +176,7 @@ def draw_main(b_val: int, s_len: int) -> None:
                     else:
                         colors = color_list[4]
 
-                    if ((x4 + y4) % 2) == 0:
-                        color = colors[0]
-                    else:
-                        color = colors[1]
+                    color = colors[0] if ((x4 + y4) % 2) == 0 else colors[1]
                     t.fill_color_shape('draw_square', s_len, color)
     t.move(800, 800)
     turtle.update()
@@ -195,10 +188,9 @@ def draw_main(b_val: int, s_len: int) -> None:
 
 if __name__ == '__main__':
     big_input = 9
-    big_value = 9 if big_input == '' or int(big_input) <= 0 else int(big_input)
+    big_value = 9 if big_input == '' or big_input <= 0 else big_input
     small_input = 5
-    small_len = 5 if small_input == '' or int(
-        small_input) <= 0 else int(small_input)
+    small_len = 5 if small_input == '' or small_input <= 0 else small_input
     print('big_value:', big_value, type(big_value),
           '\n', 'small_len:', small_len, type(small_len))
     draw_main(big_value, small_len)

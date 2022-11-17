@@ -11,17 +11,19 @@ def convert(input_file):
     if ext != '.md':
         return
     print(f'begin to convert {filename}...')
-    process = api.convert({
-        'inputformat': 'md',
-        'outputformat': 'pdf',
-        'input': 'upload',
-        'file': open('./{}'.format(input_file), 'rb')
-    })
+    process = api.convert(
+        {
+            'inputformat': 'md',
+            'outputformat': 'pdf',
+            'input': 'upload',
+            'file': open(f'./{input_file}', 'rb'),
+        }
+    )
+
     process.wait()  # wait until conversion finished
     # download output file
 
-    process.download(
-        "./tmp/{}.pdf".format(filename))
+    process.download(f"./tmp/{filename}.pdf")
     print(f"convert {filename} success")
 
 
